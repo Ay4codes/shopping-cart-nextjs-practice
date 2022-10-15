@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,400;0,8..144,500;0,8..144,600;0,8..144,700;0,8..144,800;1,8..144,300;1,8..144,400;1,8..144,500;1,8..144,600;1,8..144,700;1,8..144,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@600;700&display=swap');
+.app-wrapper {
+    /* padding-inline: 6%; */
+    padding-bottom: 100px;
+}
+.menu-card-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 50px;
+    text-align: justify;
+    place-content: center;
+    padding-inline: 5%;
+}
+.card-container {
+    border-radius: 30px;
+    background-color: ;
+    box-shadow: 0px 1px 12px 6px rgba(234,76,137,0.21);
+    max-width: 250px;
+    margin-inline: auto;
+    padding-inline: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+.card-img-container img {
+    max-width: 100%;
+    margin-inline: auto;
+    text-align: center;
+}
+.card-desc-cont p {
+    font-family: 'Roboto Serif', serif;
+    font-weight: 500;
+    color: #808080;
+    font-size: 14px;
+    text-align: left;
+    margin-top: 15px;
+}
+.price-cont {
+    text-align: center;
+}
+.price-cont button {
+    border: none;
+    background-color: #0000;
+    text-align: center;
+    padding: 8px 10px;
+    background-color: #ea4c89;
+    border-radius: 5px;
+}
+.price-cont p {
+    font-family: 'Roboto Serif', serif;
+    font-weight: 700;
+    color: #fff;
+    font-size: 17px;
+    margin-block: auto;
+}
+.btm-cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+.add-cart {
+    background-color: #ea4c89;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    font-weight: 800;
+    align-items: center;
+    cursor: pointer;
+}
+.home-head {
+    text-align: center;
+    margin-top: 100px;
+    padding-inline: 5%;
+    text-align: center;
+}
+.home-head p {
+    font-family: 'Roboto Serif', serif;
+    font-weight: 700;
+    color: #808080;
+    font-style: italic;
+    font-size: clamp(1.8rem, 6.4vw - 1rem, 3rem);
+}
+.filter-btn-container {
+    /* width: 100%; */
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    padding-inline: 5%;
+}
+.filter-btn-container button {
+    background-color: #ea4c89;
+    font-weight: 600;
+    border-radius: 5px;
+    border: none;
+    font-family: 'Roboto Serif', serif;
+    padding-block: 5px;
+    width: 100px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+}
+
+@media (max-width: 750px) {
+    .menu-card-wrapper {
+        grid-template-columns: 1fr;
+        row-gap: 50px;
+    }
+    .card-container {
+        max-width: 100%;
+    }
+}
