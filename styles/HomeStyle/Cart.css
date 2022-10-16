@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 .drop-dwn-container {
     position: fixed;
     top: 0;
@@ -95,6 +98,94 @@
 }
 .dfdfdfd {
     padding-bottom: 70px;
+}
+.order-cont {
+    display: flex;
+    gap: 20px;
+}
+.order-cont button {
+    padding-inline: 10px;
+    border: none;
+    background-color: #ea4c89;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.order-cont button span {
+    color: #fff;
+    font-family: 'Roboto Serif', serif;
+    font-weight: 500;
+    color: #fff;
+    font-size: 14px;
+}
+.complete-order-form {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    right: 0;
+    /* left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    /* width: 300px; */
+}
+.complete-order-form-inner {
+    background-color: #fff;
+    box-shadow: 0px 1px 12px 6px rgba(234,76,137,0.21);
+    width: 350px;
+    margin-inline: auto;
+    border-radius: 15px;
+    padding: 30px 30px;
+    text-align: center;
+    transition: all .4s;
+    transform: scale(0);
+}
+.complete-order-form p {
+    font-family: 'Roboto Serif', serif;
+    font-weight: 500;
+    color: #808080;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.inputs-wrapper {
+    
+}
+.input-container {
+    margin-bottom: 20px;
+}
+.inputs-wrapper input {
+    border: 2px solid #ea4c89;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding-block: 8px;
+    padding-inline: 10px;
+    width: 100%;
+    margin-top: 20px;
+    font-family: 'Roboto Serif', serif;
+    font-weight: 500;
+    color: #808080;
+    font-size: 14px;
+}
+.cancel-form-btn {
+    float: right;
+    font-size: 17px;
+    color: #ea4c89;
+    cursor: pointer;
+
+}
+.inputs-wrapper input:first-child {
+    margin-top: 0px;
+}
+.inputs-wrapper input:focus {
+    outline: 0.5px solid #ea4c89;
+}
+.complete-order-form button {
+    background-color: #ea4c89;
+    margin-inline: auto;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-family: 'Roboto Serif', serif;
+    font-weight: 900;
+    font-size: 14px;
 }
 @media (max-width: 750px) {
     .drop-dwn-container {

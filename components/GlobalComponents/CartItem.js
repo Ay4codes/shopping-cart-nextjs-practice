@@ -23,20 +23,23 @@ export default function CartItem(props) {
         }
     }
 
+    function formatAmount() {
+        return Number(price).toLocaleString("en-US") + '.00'
+    }
+
     return (
         <>
             <div className="cart-item-container">
                 <div className="cart-item-wrapper">
-                    
                     <div className="cart-img-wrapper">
                         <div className="cart-img-inner">
                             <img src={props.img} alt="Cart-Items" />
                             <div className="cart-desc-container">
                                 <h5>{props.name}</h5>
                                 <div className="">
-                                    <div className="cart-price-desc-wrapper"><span>Amount: <b>₦{price}</b></span></div>
+                                    <div className="cart-price-desc-wrapper"><span>Amount: <b>₦ {formatAmount()}</b></span></div>
                                     <div className="cart-price-desc-wrapper"><span>Qty: <b>{FormatQty()}</b></span></div>
-                                    <div className="cart-price-desc-wrapper"><span>Total: <b>₦{calculatePrice()}</b></span></div>
+                                    <div className="cart-price-desc-wrapper"><span>Total: <b>₦ {calculatePrice()}</b></span></div>
                                 </div>
                             </div>
                         </div>

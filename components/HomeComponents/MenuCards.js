@@ -10,7 +10,7 @@ export default function MenuCards(props) {
     const {click} = props
     const {zoom} = props
 
-    const [Qty, setQty] = useState(null)
+    const [Qty, setQty] = useState(1)
     const [price, setPrice] = useState(null)
 
     function calculatePrice() {
@@ -33,6 +33,7 @@ export default function MenuCards(props) {
                     <img src={props.img} />
                 </div>
                 <div className="card-desc-cont">
+                    <h5>{props.name}</h5>
                     <p>{props.desc}</p>
                 </div>
                 <div className="btm-cont">

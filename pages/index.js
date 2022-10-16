@@ -50,7 +50,7 @@ export default function Home() {
         <div className='menu-card-wrapper'>
           {toRenderData.map((data, index) => {
             return (
-              <MenuCards toUnzoomCart={setToZoomCart} zoom={changeZoomCartState} item = {data} click={click} id={index} key={data.key} img={data.img} desc={data.desc} price={data.price} />
+              <MenuCards toUnzoomCart={setToZoomCart} zoom={changeZoomCartState} item = {data} click={click} id={index} key={data.key} img={data.img} desc={data.desc} price={data.price} name={data.name} />
             )
           })}
         </div>
