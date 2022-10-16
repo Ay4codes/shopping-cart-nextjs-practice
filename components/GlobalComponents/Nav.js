@@ -49,6 +49,9 @@ export default function NavigationBar(props) {
             setModalisOpen(false)
         }
     }
+    function CloseModalHandler() {
+        setModalisOpen(false)
+    }
     
     let TotalPrice = Number(null)
     function calcTotalPrice() {
@@ -103,7 +106,7 @@ export default function NavigationBar(props) {
             <div style={{transform: cartIsOpen ? 'translateX(0%)' : 'translateX(100%)'}} className="drop-dwn-container">
                 <div className="dropDownInner">
                     <div className="cart-head-container">
-                        <FaTimesCircle style={{cursor: 'pointer'}} onClick={() => {CloseCartHandler(); ModalHandler()}} />
+                        <FaTimesCircle style={{cursor: 'pointer'}} onClick={() => {CloseCartHandler(); CloseModalHandler()}} />
                         <div className="order-cont">
                             <button onClick={() => {TotalToSpeech(); ModalHandler()}}><span>Complete Order</span></button>
                             <div className="cart">
