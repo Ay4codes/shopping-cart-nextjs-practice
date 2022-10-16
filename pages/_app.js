@@ -1,5 +1,6 @@
 import '../styles/HomeStyle/Card.css'
 import '../styles/GlobalStyle/Nav.css'
+import '../styles/HomeStyle/Cart.css'
 
 
 function MyApp({ Component, pageProps }) {

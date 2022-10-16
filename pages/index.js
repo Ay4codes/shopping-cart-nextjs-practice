@@ -44,7 +44,7 @@ export default function Home() {
       <Head>
         <title>Home</title>
       </Head>
-      <NavigationBar cart={cart} toZoomCart={toZoomCart}/>
+      <NavigationBar cart={cart} zoomOnRemoveCart={changeZoomCartState} toZoomCart={toZoomCart}/>
       <div className='filter-btns-coont'>
         <FilterBtns filterFood={filterFood} filterSmoothy={filterSmoothy} filterDrinks={filterDrinks} filterAlcohol={filterAlcohol} />
         <div className='menu-card-wrapper'>

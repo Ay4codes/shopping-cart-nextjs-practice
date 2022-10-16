@@ -1,6 +1,10 @@
 import react, { useState } from "react";
 import Image from 'next/image'
 import {FaPlus} from 'react-icons/fa'
+import CartData from "../../Data/CartData";
+
+
+
 
 export default function MenuCards(props) {
     const {click} = props
@@ -17,7 +21,11 @@ export default function MenuCards(props) {
         } else {
             return  formatedCalcValues
         }
-    }                                                                                                        
+    }
+    // Stoped Here
+    function PostCart(data) {
+        CartData.push({key: data.id, type: data.type, name: data.name, img: data.img, desc: data.desc, price: data.price, qty: Qty, amount: data.price*Qty})
+    }                                                                                             
     return (
         <div className="card-container">
             <div>
@@ -32,9 +40,9 @@ export default function MenuCards(props) {
                         <button>
                             <p>{'₦ ' + calculatePrice()}</p>
                         </button>
-                        <input type={'number'} onChange={(e) => {setQty(e.target.value); console.log(Qty)}} placeholder="Qty?"></input>
+                        <input type={'number'} onChange={(e) => {setQty(e.target.value);}} placeholder="Qty?"></input>
                     </div>
-                    <div onClick={async () => { await click(props); zoom();}} className="add-cart ">
+                    <div onClick={async () => { await click(props); zoom(); PostCart(props);  }} className="add-cart ">
                         <FaPlus style={{color: '#fff'}} />
                     </div>
                 </div>
