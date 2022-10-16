@@ -23,6 +23,7 @@ export default function NavigationBar(props) {
     function CloseCartHandler() {
         setCartIsOpen(false)
     }
+    
     return (
         <div>
             <div className="nav-container">
@@ -51,13 +52,13 @@ export default function NavigationBar(props) {
                     <div className="dfdfdfd">
                         {CartData.map((cartItem, index) => {
                             return (
-                                <CartItem key={index} id={index} img={cartItem.img} price={cartItem.price} zoomOnRemoveCart={zoomOnRemoveCart} qty={cartItem.qty} />
+                                <CartItem cartData={CartData} key={index} id={index} img={cartItem.img} price={cartItem.price} zoomOnRemoveCart={zoomOnRemoveCart} qty={cartItem.qty} />
                             )
                         })}
                     </div>
                     <div className="total-btn">
                         <button>
-                            <span>Total: ₦5000.00</span>
+                            <span>Total: ₦{TotalPrice}</span>
                         </button>
                     </div>
                     
