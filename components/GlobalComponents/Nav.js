@@ -23,6 +23,17 @@ export default function NavigationBar(props) {
     function CloseCartHandler() {
         setCartIsOpen(false)
     }
+
+    
+    let TotalPrice
+    function calcTotalPrice() {
+        for (let i = 0; i < CartData.length; i++) {
+            const element = CartData[i];
+            TotalPrice += element.price
+        }
+        console.log(TotalPrice)
+    }
+    calcTotalPrice()
     
     return (
         <div>
