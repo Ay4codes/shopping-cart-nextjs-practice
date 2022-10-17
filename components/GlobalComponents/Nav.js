@@ -19,21 +19,20 @@ const toWords = new ToWords({
       }
     }
   });
-
-
  
 export default function NavigationBar(props) {
-    const {cart} = props
     const {toZoomCart} = props
     const {zoomOnRemoveCart} = props
+    const [carts, setCarts] = useState(CartData)
     const [cartIsOpen, setCartIsOpen] = useState(false)
     const [modalIsOpen, setModalisOpen] = useState(false)
+    const {reduceItemQty} = props
     
     function sanitizecartLength() {
-        if (cart.length === 0) {
+        if (CartData.length === 0) {
             return null
         } else {
-            return cart.length
+            return CartData.length
         }
     }
     function OpenCartHandler() {
@@ -87,7 +86,11 @@ export default function NavigationBar(props) {
       window.speechSynthesis.speak(msg)
       Total = Number(null)
     }
-      
+
+    function removeCartItem(cartItem) {
+        
+    }
+    
     return (
         <div>
             <div className="nav-container">
@@ -116,10 +119,10 @@ export default function NavigationBar(props) {
                             </div>
                         </div>
                     </div>
-                    <div style={{}} className="dfdfdfd">
+                    <div className="cart-item-main-container">
                         {CartData.map((cartItem, index) => {
                             return (
-                                <CartItem cartData={CartData} key={index} id={index} img={cartItem.img} price={cartItem.price} name={cartItem.name} zoomOnRemoveCart={zoomOnRemoveCart} qty={cartItem.qty} />
+                                <CartItem key={cartItem.id} id={cartItem.id} onReduce={reduceItemQty} onRemove={removeCartItem} cartData={CartData} img={cartItem.img} price={cartItem.price} name={cartItem.name} zoomOnRemoveCart={zoomOnRemoveCart} qty={cartItem.qty} />
                             )
                         })}
                     </div>
@@ -128,6 +131,9 @@ export default function NavigationBar(props) {
                             <span>Total: ₦ {calcTotalPrice()}</span>
                         </button>
                     </div>
+                    
+                </div>
+                <div style={{display: modalIsOpen && 'block'}} className="backdrop">
                     <div style={{transform: modalIsOpen && 'scale(1)'}} className="complete-order-form">
                         <div style={{transform: modalIsOpen && 'scale(1)'}} className="complete-order-form-inner">
                             <FaTimesCircle onClick={ModalHandler} className="cancel-form-btn" />

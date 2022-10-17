@@ -4,6 +4,9 @@ import CartData from '../../Data/CartData'
 export default function CartItem(props) {
     const {price, qty} = props
     const {CartData} = props
+    const {zoomOnRemoveCart} = props
+    const {onRemove} = props
+    const {onReduce} = props
 
     function calculatePrice() {
         const calcValues = (price * qty)+'.00'
@@ -43,8 +46,9 @@ export default function CartItem(props) {
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <FaTimesCircle style={{fontSize: '30px', color: '#ea4c89', cursor: 'pointer'}} onClick={props.zoomOnRemoveCart} />
+                        <div className='reduce-btns'>
+                            <img onClick={() => onReduce(props)} width={30} src='/reduce.png' />
+                            <FaTimesCircle style={{fontSize: '30px', color: '#ea4c89', cursor: 'pointer'}} onClick={() => {zoomOnRemoveCart(); onRemove(props)}} />
                         </div>
                     </div>
                 </div>
