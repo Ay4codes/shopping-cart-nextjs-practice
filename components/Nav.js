@@ -2,8 +2,8 @@ import react, { useEffect, useState } from "react";
 import {FaShoppingCart} from 'react-icons/fa'
 import {FaTimesCircle} from 'react-icons/fa'
 import CartItem from "./CartItem";
-import CartData from "../../Data/CartData";
 import {ToWords} from 'to-words'
+import OrderForm from "./OrderForm";
 
 const toWords = new ToWords({
     localeCode: 'en-US',
@@ -21,18 +21,16 @@ const toWords = new ToWords({
   });
  
 export default function NavigationBar(props) {
-    const {toZoomCart} = props
-    const {zoomOnRemoveCart} = props
-    const [carts, setCarts] = useState(CartData)
+    const {toZoomCart, reduceItemQty, zoomOnRemoveCart, mainCartItems, removeCartItem} = props
+    const [carts, setCarts] = useState(mainCartItems)
     const [cartIsOpen, setCartIsOpen] = useState(false)
     const [modalIsOpen, setModalisOpen] = useState(false)
-    const {reduceItemQty} = props
     
     function sanitizecartLength() {
-        if (CartData.length === 0) {
+        if (mainCartItems.length === 0) {
             return null
         } else {
-            return CartData.length
+            return mainCartItems.length
         }
     }
     function OpenCartHandler() {
@@ -54,8 +52,8 @@ export default function NavigationBar(props) {
     
     let TotalPrice = Number(null)
     function calcTotalPrice() {
-        for (let i = 0; i < CartData.length; i++) {
-            const element = CartData[i];
+        for (let i = 0; i < mainCartItems.length; i++) {
+            const element = mainCartItems[i];
             TotalPrice += Number(element.price * element.qty)
         }
         if (TotalPrice === null) {
@@ -66,9 +64,9 @@ export default function NavigationBar(props) {
     }
 
     let Total = Number(null)
-    async function TotalToSpeech() {
-      for (let i = 0; i < CartData.length; i++) {
-          const element = CartData[i];
+    function TotalToSpeech() {
+      for (let i = 0; i < mainCartItems.length; i++) {
+          const element = mainCartItems[i];
           Total += Number(element.price * element.qty)
       }
       const convert = toWords.convert(Total, {currency: true, ignoreDecimal: true})
@@ -78,17 +76,13 @@ export default function NavigationBar(props) {
         } else {
             return 'About to order '+convert+' worth of items'
         }
-      }
-      const speech = 'About to order '+convert+' worth of items' 
-      const msg = new SpeechSynthesisUtterance()
-      msg.text = FormatSpeech()
-      console.log()
-      window.speechSynthesis.speak(msg)
-      Total = Number(null)
     }
-
-    function removeCartItem(cartItem) {
-        
+        const speech = 'About to order '+convert+' worth of items' 
+        const msg = new SpeechSynthesisUtterance()
+        msg.text = FormatSpeech()
+        console.log()
+        window.speechSynthesis.speak(msg)
+        Total = Number(null)
     }
     
     return (
@@ -120,9 +114,9 @@ export default function NavigationBar(props) {
                         </div>
                     </div>
                     <div className="cart-item-main-container">
-                        {CartData.map((cartItem, index) => {
+                        {mainCartItems.map((cartItem) => {
                             return (
-                                <CartItem key={cartItem.id} id={cartItem.id} onReduce={reduceItemQty} onRemove={removeCartItem} cartData={CartData} img={cartItem.img} price={cartItem.price} name={cartItem.name} zoomOnRemoveCart={zoomOnRemoveCart} qty={cartItem.qty} />
+                                <CartItem key={cartItem.id} id={cartItem.id} onReduce={reduceItemQty} onRemove={removeCartItem} mainCartItems={mainCartItems} img={cartItem.img} price={cartItem.price} name={cartItem.name} zoomOnRemoveCart={zoomOnRemoveCart} qty={cartItem.qty} />
                             )
                         })}
                     </div>
@@ -133,23 +127,7 @@ export default function NavigationBar(props) {
                     </div>
                     
                 </div>
-                <div style={{display: modalIsOpen && 'block'}} className="backdrop">
-                    <div style={{transform: modalIsOpen && 'scale(1)'}} className="complete-order-form">
-                        <div style={{transform: modalIsOpen && 'scale(1)'}} className="complete-order-form-inner">
-                            <FaTimesCircle onClick={ModalHandler} className="cancel-form-btn" />
-                            <p>About to order ₦ {Number(TotalPrice).toLocaleString("en-US") + '.00'} worth of items.</p>
-                            <div className="inputs-wrapper">
-                                <div className="input-container">
-                                    <input placeholder="Full Name"  />
-                                </div>
-                                <div className="input-container">
-                                    <input placeholder="Table Number"  />
-                                </div>
-                            </div>
-                            <button>Confirm</button>
-                        </div>
-                    </div>
-                </div>
+                <OrderForm modalIsOpen={modalIsOpen} ModalHandler={ModalHandler} TotalPrice={TotalPrice}/>
             </div>
         </div>
 

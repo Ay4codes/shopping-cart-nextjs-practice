@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
-import MenuCards from '../components/HomeComponents/MenuCards'
-import NavigationBar from '../components/GlobalComponents/Nav'
+import MenuCards from '../components/MenuCards'
+import NavigationBar from '../components/Nav'
 import FoodCardData from '../Data/FoodCardData'
 import SmoothyCardData from '../Data/DrinksData'
 import SoftDrinksCardData from '../Data/SftDrinksData'
 import AlcoholData from '../Data/AlchData'
-import FilterBtns from '../components/GlobalComponents/Filter'
-import CartData from '../Data/CartData'
+import FilterBtns from '../components/Filter'
 
 export default function Home() {
   const [toRenderData, setToRenderData] = useState(FoodCardData)
   const [toZoomCart, setToZoomCart] = useState(false)
   const [Qty, setQty] = useState(1)
+  const [mainCartItems, setmainCartItems] = useState([])
 
   function filterFood() {
     setToRenderData(FoodCardData)
@@ -32,30 +32,48 @@ export default function Home() {
 
     setTimeout(() => {
       setToZoomCart(false)
-    }, 300);
+    }, 200);
   }
 
   function PostCart(data) {
-    if (CartData.length === 0) {
+    if (mainCartItems.length === 0) {
         const newCartItem = {key: data.id, id: data.id, type: data.type, name: data.name, img: data.img, desc: data.desc, price: data.price, qty: Qty, amount: data.price*Qty}
-        CartData.push(newCartItem)
+        setmainCartItems([newCartItem, ...mainCartItems])
     } else {
-        const exist = CartData.find((x) => x.id === data.id)
+        const exist = mainCartItems.find((x) => x.id === data.id)
         if (exist) {
             exist.qty = Number(Qty) + Number(exist.qty)
         } else {
             const newCartItem = {key: data.id, id: data.id, type: data.type, name: data.name, img: data.img, desc: data.desc, price: data.price, qty: Qty, amount: data.price*Qty}
-            CartData.push(newCartItem)
+            setmainCartItems([newCartItem, ...mainCartItems])
         }
     }
   }
+
+
   function reduceQty(data) {
-    const exist = CartData.find((x) => x.id === data.id)
+    setmainCartItems(currentCartItems =>
+      // Use the map() method to iterate over the array
+      currentCartItems.map((cartItems) => {
+        // On each iteration, check if a certain condition is met.
+        if (cartItems.id === data.id) {
+          if (data.qty === 1) {
+            // Update the properties of the object that matches the condition.
+            return {...cartItems, qty:  Number(data.qty) }
+          } else {
+            return {...cartItems, qty:  Number(data.qty - 1) }
+          }
+        }
+        return cartItems;
+      })
+    );
+  }
+
+  function removeCartItem(cartItem) {
+    const exist = mainCartItems.find((x) => x.id === cartItem.id)
     if (exist) {
-      exist.qty = exist.qty - 1
-      console.log(CartData);
+        setmainCartItems(mainCartItems.filter((item) => item.id !== exist.id))
     }
-    // console.log(exist.qty)
   }
 
   return (
@@ -63,7 +81,7 @@ export default function Home() {
       <Head>
         <title>Home</title>
       </Head>
-      <NavigationBar reduceItemQty={reduceQty} zoomOnRemoveCart={changeZoomCartState} toZoomCart={toZoomCart}/>
+      <NavigationBar removeCartItem={removeCartItem} mainCartItems={mainCartItems} setmainCartItems={setmainCartItems} reduceItemQty={reduceQty} zoomOnRemoveCart={changeZoomCartState} toZoomCart={toZoomCart}/>
       <div className='filter-btns-coont'>
         <FilterBtns filterFood={filterFood} filterSmoothy={filterSmoothy} filterDrinks={filterDrinks} filterAlcohol={filterAlcohol} />
         <div className='menu-card-wrapper'>
