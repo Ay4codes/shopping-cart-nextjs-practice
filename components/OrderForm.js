@@ -13,7 +13,7 @@ export default function OrderForm(props) {
             window.alert('Cart Items not available')
             console.log(formData);
         } else {
-            if (formData.name === '' && formData.tableNumber === '') {
+            if (formData.name === '' || formData.tableNumber === '') {
                 window.alert('Name And Table Number Required')
             } else {
                 try {
