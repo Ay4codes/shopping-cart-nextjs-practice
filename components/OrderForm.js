@@ -41,7 +41,7 @@ export default function OrderForm(props) {
                     }
                 } catch (error) {
                     window.alert('Error Sending Order')
-                    setFormSubmitState({...formData, submitted: true, loading: false, success: false})
+                    setFormSubmitState({...formData, submitted: false, loading: false, success: false})
                 }
             }
         }
@@ -63,7 +63,7 @@ export default function OrderForm(props) {
                                 <input type={'number'} value={formData.tableNumber} onChange={(e) => setFormData({...formData, tableNumber: e.target.value})} placeholder="Enter Your Table Number"  />
                             </div>
                         </div>
-                        <button onClick={formSubmitState.loading ? null :  () => handleFormSubmit()}> {formSubmitState.loading ? <Icon style={{color: '#fff', margin: 'auto', fontWeight: '800', textAlign: 'center'}} width='20' icon="eos-icons:loading" /> : 'Confirm'}</button>
+                        <button onClick={formSubmitState.loading ? null :  () => handleFormSubmit}> {formSubmitState.loading ? <Icon style={{color: '#fff', margin: 'auto', fontWeight: '800', textAlign: 'center'}} width='20' icon="eos-icons:loading" /> : 'Confirm'}</button>
                     </div>
                 </div>
             </div>
