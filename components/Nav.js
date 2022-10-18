@@ -21,8 +21,7 @@ const toWords = new ToWords({
   });
  
 export default function NavigationBar(props) {
-    const {toZoomCart, reduceItemQty, zoomOnRemoveCart, mainCartItems, removeCartItem} = props
-    const [carts, setCarts] = useState(mainCartItems)
+    const {toZoomCart, reduceItemQty, zoomOnRemoveCart, mainCartItems, removeCartItem, setmainCartItems} = props
     const [cartIsOpen, setCartIsOpen] = useState(false)
     const [modalIsOpen, setModalisOpen] = useState(false)
     
@@ -127,7 +126,7 @@ export default function NavigationBar(props) {
                     </div>
                     
                 </div>
-                <OrderForm modalIsOpen={modalIsOpen} ModalHandler={ModalHandler} TotalPrice={TotalPrice}/>
+                <OrderForm setmainCartItems={setmainCartItems} mainCartItems={mainCartItems} modalIsOpen={modalIsOpen} ModalHandler={ModalHandler} TotalPrice={TotalPrice}/>
             </div>
         </div>
 

@@ -79,9 +79,9 @@ export default function Home() {
   return (
     <div className='app-wrapper'>
       <Head>
-        <title>Home</title>
+        <title>Labongoes</title>
       </Head>
-      <NavigationBar removeCartItem={removeCartItem} mainCartItems={mainCartItems} setmainCartItems={setmainCartItems} reduceItemQty={reduceQty} zoomOnRemoveCart={changeZoomCartState} toZoomCart={toZoomCart}/>
+      <NavigationBar setmainCartItems={setmainCartItems} removeCartItem={removeCartItem} mainCartItems={mainCartItems} setmainCartItems={setmainCartItems} reduceItemQty={reduceQty} zoomOnRemoveCart={changeZoomCartState} toZoomCart={toZoomCart}/>
       <div className='filter-btns-coont'>
         <FilterBtns filterFood={filterFood} filterSmoothy={filterSmoothy} filterDrinks={filterDrinks} filterAlcohol={filterAlcohol} />
         <div className='menu-card-wrapper'>

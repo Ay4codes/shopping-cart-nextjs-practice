@@ -1,9 +1,42 @@
-import react from "react";
+import react, { useState } from "react";
 import {FaTimesCircle} from 'react-icons/fa'
 
-
 export default function OrderForm(props) {
-    const {modalIsOpen, ModalHandler, TotalPrice} = props
+    const {modalIsOpen, ModalHandler, TotalPrice, mainCartItems, setmainCartItems} = props
+
+    const [formData, setFormData] = useState({name: '', tableNumber: '', orders: mainCartItems})
+    const [formSubmitState, setFormSubmitState] = useState(false)
+
+    async function handleFormSubmit () {
+        if (formData.name && formData.tableNumber === '') {
+            window.alert('Name And Table Number Required')
+        } else {
+            try {
+                const response = await fetch('/api/order', {
+                    method: 'POST',
+                    body: JSON.stringify(formData),
+                    headers: {
+                      Accept: 'application.json',
+                      'Content-Type': 'application/json'
+                    }
+                })
+    
+                if (response.ok === true) {
+                    window.alert('Order sent Successfully')
+                    setmainCartItems([])
+                    setFormSubmitState(true)
+                    ModalHandler()
+                    setFormData({name: null, tableNumber: null, orders: null})
+                } else {
+                    window.alert('Error Sending Order')
+                    setFormSubmitState(false)
+                }
+            } catch (error) {
+                window.alert('Error Sending Order')
+                setFormSubmitState(false)
+            }
+        }
+    }
     
     return (
         <div>
@@ -14,13 +47,14 @@ export default function OrderForm(props) {
                         <p>About to order ₦ {Number(TotalPrice).toLocaleString("en-US") + '.00'} worth of items.</p>
                         <div className="inputs-wrapper">
                             <div className="input-container">
-                                <input placeholder="Full Name"  />
+                                <input value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Full Name"  />
                             </div>
+                            
                             <div className="input-container">
-                                <input placeholder="Table Number"  />
+                                <input value={formData.tableNumber} onChange={(e) => setFormData({...formData, tableNumber: e.target.value})} placeholder="Table Number"  />
                             </div>
                         </div>
-                        <button>Confirm</button>
+                        <button onClick={handleFormSubmit}>Confirm</button>
                     </div>
                 </div>
             </div>
