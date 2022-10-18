@@ -8,6 +8,7 @@ export default function OrderForm(props) {
 
     const [formData, setFormData] = useState({name: '', tableNumber: '', orders: ''})
     const [formSubmitState, setFormSubmitState] = useState(false)
+    const [SendingState, setSendingState] = useState(false)
 
     async function handleFormSubmit () {
         if (mainCartItems.length === 0) {
@@ -17,7 +18,7 @@ export default function OrderForm(props) {
                 window.alert('Name And Table Number Required')
             } else {
                 try {
-                    setFormSubmitState(true)
+                    setSendingState(true)
                     const response = await fetch('/api/order', {
                         method: 'POST',
                         body: JSON.stringify(formData),
@@ -32,13 +33,16 @@ export default function OrderForm(props) {
                         ModalHandler()
                         setFormData({name: null, tableNumber: null, orders: null})
                         setFormSubmitState(false)
+                        setSendingState(false)
                     } else {
                         window.alert('Error Sending Order')
                         setFormSubmitState(false)
+                        setSendingState(false)
                     }
                 } catch (error) {
                     window.alert('Error Sending Order')
                     setFormSubmitState(false)
+                    setSendingState(false)
                 }
             }
         }
@@ -60,7 +64,7 @@ export default function OrderForm(props) {
                                 <input type={'number'} value={formData.tableNumber} onChange={(e) => setFormData({...formData, tableNumber: e.target.value})} placeholder="Table Number"  />
                             </div>
                         </div>
-                        <button onClick={formSubmitState ? '' :  handleFormSubmit}> {formSubmitState ? <Icon style={{color: '#fff', margin: 'auto', fontWeight: '800', textAlign: 'center'}} width='20' icon="eos-icons:loading" /> : 'Confirm'}</button>
+                        <button onClick={SendingState ? null :  handleFormSubmit}> {SendingState ? <Icon style={{color: '#fff', margin: 'auto', fontWeight: '800', textAlign: 'center'}} width='20' icon="eos-icons:loading" /> : 'Confirm'}</button>
                     </div>
                 </div>
             </div>
