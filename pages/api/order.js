@@ -11,13 +11,7 @@ const transporter = nodemailer.createTransport({
 });
 
 export default async function Orderhandler(req, res) {
-  const {name, tableNumber, orders} = req.body
-
-  function createOrder(orders) {
-    orders.map((items) => {
-      return `<p>${items.name}</p>`
-    })
-  }
+  const {name, tableNumber, orders, total} = req.body
 
   const mailOptions = {
     from: process.env.USER,
@@ -26,11 +20,12 @@ export default async function Orderhandler(req, res) {
     html: `<h1>Order To The Receiptionist</h1>
            <p>Name: ${name}</p>
            <p>Table Number: ${tableNumber}</p>
-           <p>Order Items: </p>`,
+           <p>Total: ${total}</p>
+           <p>Order Items: ${orders}</p>`,
   };
 
   try {
-    await transporter.sendMail(mailOptions, function(err, info){
+    transporter.sendMail(mailOptions, function(err, info){
       if (err) {
         return res.status(500).json({error: err.message})
       }

@@ -55,6 +55,7 @@ export default function NavigationBar(props) {
             const element = mainCartItems[i];
             TotalPrice += Number(element.price * element.qty)
         }
+        
         if (TotalPrice === null) {
             return null
         } else {
