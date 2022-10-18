@@ -31,7 +31,6 @@ export default function OrderForm(props) {
                         window.alert('Order sent Successfully')
                         ModalHandler()
                         setFormSubmitState({...formData, submitted: true, loading: false, success: true})
-                        setFormData({...formData, name: '', tableNumber: ''})
                     } else {
                         window.alert('Error Sending Order')
                         setFormSubmitState({...formData, submitted: true, loading: false, success: false})
