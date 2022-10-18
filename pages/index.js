@@ -81,7 +81,7 @@ export default function Home() {
       <Head>
         <title>Labongoes</title>
       </Head>
-      <NavigationBar setmainCartItems={setmainCartItems} removeCartItem={removeCartItem} mainCartItems={mainCartItems} setmainCartItems={setmainCartItems} reduceItemQty={reduceQty} zoomOnRemoveCart={changeZoomCartState} toZoomCart={toZoomCart}/>
+      <NavigationBar setmainCartItems={setmainCartItems} removeCartItem={removeCartItem} mainCartItems={mainCartItems} reduceItemQty={reduceQty} zoomOnRemoveCart={changeZoomCartState} toZoomCart={toZoomCart}/>
       <div className='filter-btns-coont'>
         <FilterBtns filterFood={filterFood} filterSmoothy={filterSmoothy} filterDrinks={filterDrinks} filterAlcohol={filterAlcohol} />
         <div className='menu-card-wrapper'>

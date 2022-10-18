@@ -196,6 +196,8 @@
     font-family: 'Roboto Serif', serif;
     font-weight: 900;
     font-size: 14px;
+    width: 100px;
+    cursor: pointer;
 }
 .reduce-btns {
     text-align: right;

@@ -25,8 +25,8 @@ export default async function Orderhandler(req, res) {
     subject: `Order From labongoes Menu Web`,
     html: `<h1>Order To The Receiptionist</h1>
            <p>Name: ${name}</p>
-           <p>Name: ${tableNumber}</p>
-           <p>Order Items: ${createOrder}</p>`,
+           <p>Table Number: ${tableNumber}</p>
+           <p>Order Items: </p>`,
   };
 
   try {
