@@ -8,6 +8,10 @@ export default function OrderForm(props) {
     const [formData, setFormData] = useState({name: '', tableNumber: '', total: '', orders: ''})
     const [formSubmitState, setFormSubmitState] = useState({loading: false, submitted: false, success: false})
 
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     async function handleFormSubmit () {
         if (mainCartItems.length === 0) {
             window.alert('Cart Items not available')
@@ -52,7 +56,7 @@ export default function OrderForm(props) {
                         <p>About to order ₦ {Number(TotalPrice).toLocaleString("en-US") + '.00'} worth of items.</p>
                         <div className="inputs-wrapper">
                             <div className="input-container">
-                                <input value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} placeholder="Enter Your Full Name"  />
+                                <input value={formData.name} onChange={(e) => {setFormData({...formData, name: capitalizeFirstLetter(e.target.value)})}} placeholder="Enter Your Full Name"  />
                             </div>
 
                             <div className="input-container">
