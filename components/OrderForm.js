@@ -22,7 +22,6 @@ export default function OrderForm(props) {
         } else {
             if (formData.name === '' || formData.tableNumber === '') {                
                 window.alert('Name And Table Number Required')
-                console.log(formData.orders)
             } else {
                 try {
                     setFormSubmitState({...formSubmitState, loading: true})
