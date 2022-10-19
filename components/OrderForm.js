@@ -18,10 +18,10 @@ export default function OrderForm(props) {
 
     async function handleFormSubmit () {
         if (mainCartItems.length === 0) {
-            window.alert('Cart Items not available')
+            window.alert('Cart Items not available ❌')
         } else {
             if (formData.name === '' || formData.tableNumber === '') {                
-                window.alert('Name And Table Number Required')
+                window.alert('Name And Table Number Required ❌')
             } else {
                 try {
                     setFormSubmitState({...formSubmitState, loading: true})
@@ -35,16 +35,16 @@ export default function OrderForm(props) {
                     })
         
                     if (response.ok === true) {
-                        window.alert('Order sent Successfully')
+                        window.alert('Order sent Successfully ✅')
                         ModalHandler()
                         setFormSubmitState({...formSubmitState, submitted: true, loading: false, success: true})
                         setFormData({...formData, tableNumber: ''})
                     } else {
-                        window.alert('Error Sending Order')
+                        window.alert('Error Sending Order ❌')
                         setFormSubmitState({...formSubmitState, submitted: true, loading: false, success: false})
                     }
                 } catch (error) {
-                    window.alert('Error Sending Order')
+                    window.alert('Error Sending Order ❌')
                     setFormSubmitState({...formSubmitState, submitted: false, loading: false, success: false})
                 }
             }
