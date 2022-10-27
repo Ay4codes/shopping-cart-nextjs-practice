@@ -45,7 +45,7 @@ export default async function Orderhandler(req, res) {
            <p>Name: ${name}</p>
            <p>Table Number: ${tableNumber}</p>
            <p>Order Items: </p>
-           <table cellspacing='30' style="border: 1px solid black; text-align: center;"> <tr style="border: 1px solid black;" ><th>Name</th><th>Qty</th><th>Amount</th><th>Total</th></tr> 
+           <table cellspacing='30' style="border: 1px solid black; text-align: center; border-radius: 20px;"> <tr style="border: 1px solid black;" ><th>Name</th><th>Qty</th><th>Amount</th><th>Total</th></tr> 
            ${allOrders}
            </table>
            <p><b>Total Orders: ₦ ${Number(totalPrice).toLocaleString("en-US") + '.00'}</b></p>`
